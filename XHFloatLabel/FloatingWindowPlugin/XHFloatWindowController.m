@@ -8,7 +8,6 @@
 
 #import "XHFloatWindowController.h"
 #import "XHDraggableButton.h"
-#import "UIDraggableTextFeild.h"
 #import "XHFloatWindowSingleton.h"
 #define floatWindowSizeW 100
 #define floatWindowSizeH 50
@@ -40,9 +39,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
     // listen the keyborad to hide to reset the float label
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    // root view click gesture
-    UITapGestureRecognizer *tagGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rootViewTag)];
-    [self.view.superview addGestureRecognizer:tagGestureRecognizer];
 }
 
 /**
@@ -50,40 +46,38 @@
  */
 - (void)createButton
 {
+    // floating window
+    _window = [[UIWindow alloc]init];
+    _window.backgroundColor = [UIColor redColor];
+    
+    _window.frame = CGRectMake(50, 300, floatWindowSizeW, floatWindowSizeH);
+    _window.windowLevel = UIWindowLevelAlert+1;
+    [_window makeKeyAndVisible];
+
+    
     // 1.floating button
     _button = [XHDraggableButton buttonWithType:UIButtonTypeCustom];
-    //[self resetBackgroundImage:@"default_normal" forState:UIControlStateNormal];
-    //[self resetBackgroundImage:@"default_selected" forState:UIControlStateSelected];
-    _button.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    _button.frame = CGRectMake(0, 0, floatWindowSizeW, floatWindowSizeH);
     _button.buttonDelegate = self;
     _button.initOrientation = [UIApplication sharedApplication].statusBarOrientation;
     _button.originTransform = _button.transform;
+    _button.backgroundColor = [UIColor whiteColor];
     [_button setTitle:@"我显示输入的最终文字" forState:UIControlStateNormal];
-    _button.backgroundColor = [UIColor purpleColor];
-    //_button.imageView.alpha = 0.8;
+    [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    _button.frame = CGRectMake(0, 0, floatWindowSizeW, floatWindowSizeH);
+    _button.originTransform = _button.transform;
+    [_window addSubview:_button];
     
     
     // 2. textFeild
-    _textFeild = [[UIDraggableTextFeild alloc] initWithFrame:CGRectMake(0, 0,floatWindowSizeW, floatWindowSizeH)];
+    _textFeild = [[UITextField alloc] init];
     _textFeild.text = @"我是输入框";
-    _textFeild.backgroundColor = [UIColor yellowColor];
-    _textFeild.textColor = [UIColor purpleColor];
+    _textFeild.backgroundColor = [UIColor whiteColor];
+    _textFeild.textColor = [UIColor blackColor];
     _textFeild.returnKeyType = UIReturnKeyDone;
     _textFeild.delegate = self;
     
-    
-    // 3.floating window
-    _window = [[UIWindow alloc]init];
-    _window.frame = CGRectMake(50, 300, floatWindowSizeW, floatWindowSizeH);
-    _window.windowLevel = UIWindowLevelAlert+1;
-    _window.backgroundColor = [UIColor clearColor];
-    //_window.layer.cornerRadius = floatWindowSize/2;
-    //_window.layer.masksToBounds = YES;
-    
-    [_window addSubview:_button];
-    //[_window addSubview:_textFeild];
-    [_window makeKeyAndVisible];
+    _textFeild.frame = CGRectMake(0, 0,floatWindowSizeW, floatWindowSizeH);
 }
 
 /**
@@ -98,7 +92,7 @@
  */
 - (void)dragButtonClicked:(UIButton *)sender {
     if(!_isEditing) {
-        _button.titleLabel.text = @"";
+        //_button.titleLabel.text = @"";
         [_window addSubview:_textFeild];
         [_textFeild becomeFirstResponder];
         _isEditing = YES;
@@ -148,7 +142,7 @@
  * notification
  */
 - (void)orientationChange:(NSNotification *)notification {
-    [_button buttonRotate];
+    [_button buttonRotate:_window];
 }
 
 /**
@@ -156,16 +150,7 @@
  */
 - (void)keyBoardWillHide:(NSNotification *)notifivation
 {
-    [_button setTitle:_textFeild.text forState:UIControlStateNormal];
-    [_textFeild removeFromSuperview];
     _isEditing = NO;
-}
-
-/**
- * on click rootview
- */
-- (void)rootViewTag{
-    [_textFeild resignFirstResponder];
 }
 
 /**
@@ -173,7 +158,9 @@
  */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [_button setTitle:_textFeild.text forState:UIControlStateNormal];
     [textField resignFirstResponder];
+    [_textFeild removeFromSuperview];
     return YES;
 }
 

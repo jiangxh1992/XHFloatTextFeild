@@ -25,6 +25,6 @@
 @property (nonatomic, assign)UIInterfaceOrientation initOrientation;
 @property (nonatomic, assign)CGAffineTransform originTransform;
 
-- (void)buttonRotate;
+- (void)buttonRotate:(UIWindow *)window;
 
 @end

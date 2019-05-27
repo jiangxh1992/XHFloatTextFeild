@@ -10,6 +10,7 @@
 
 #define xh_ScreenH [UIScreen mainScreen].bounds.size.height
 #define xh_ScreenW [UIScreen mainScreen].bounds.size.width
+#define floatEgde 20
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_PAD (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPad)
@@ -95,25 +96,25 @@ typedef NS_ENUM(NSInteger, xh_ScreenChangeOrientation) {
     switch (minDir) {
         case xh_FloatWindowLEFT: {
             [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(self.superview.frame.size.width/2, self.superview.center.y);
+                self.superview.center = CGPointMake(self.superview.frame.size.width/2 + floatEgde, self.superview.center.y);
             }];
             break;
         }
         case xh_FloatWindowRIGHT: {
             [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(W - self.superview.frame.size.width/2, self.superview.center.y);
+                self.superview.center = CGPointMake(W - self.superview.frame.size.width/2 - floatEgde, self.superview.center.y);
             }];
             break;
         }
         case xh_FloatWindowTOP: {
             [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(self.superview.center.x, self.superview.frame.size.height/2);
+                self.superview.center = CGPointMake(self.superview.center.x, self.superview.frame.size.height/2 + floatEgde);
             }];
             break;
         }
         case xh_FloatWindowBOTTOM: {
             [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(self.superview.center.x, H - self.superview.frame.size.height/2);
+                self.superview.center = CGPointMake(self.superview.center.x, H - self.superview.frame.size.height/2 - floatEgde);
             }];
             break;
         }
@@ -122,7 +123,7 @@ typedef NS_ENUM(NSInteger, xh_ScreenChangeOrientation) {
     }
 }
 
-- (void)buttonRotate {
+- (void)buttonRotate:(UIWindow *)rootWindow {
     [self buttonAutoAdjust:self.center];
     
     if(IS_IPHONE){
@@ -130,18 +131,19 @@ typedef NS_ENUM(NSInteger, xh_ScreenChangeOrientation) {
         switch (change2orien) {
             case xh_Change2Origin:
                 self.transform = _originTransform;
+                rootWindow.transform = CGAffineTransformMakeRotation(0);
                 break;
             case xh_Change2Left:
                 self.transform = _originTransform;
-                self.transform = CGAffineTransformMakeRotation(-90*M_PI/180.0);
+                rootWindow.transform = CGAffineTransformMakeRotation(-90*M_PI/180.0);
                 break;
             case xh_Change2Right:
                 self.transform = _originTransform;
-                self.transform = CGAffineTransformMakeRotation(90*M_PI/180.0);
+                rootWindow.transform = CGAffineTransformMakeRotation(90*M_PI/180.0);
                 break;
             case xh_Change2Upside:
                 self.transform = _originTransform;
-                self.transform = CGAffineTransformMakeRotation(180*M_PI/180.0);
+                rootWindow.transform = CGAffineTransformMakeRotation(180*M_PI/180.0);
                 break;
             default:
                 break;

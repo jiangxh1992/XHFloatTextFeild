@@ -13,11 +13,11 @@
 		696EE2082292E7890017EB95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 696EE2072292E7890017EB95 /* Assets.xcassets */; };
 		696EE20B2292E7890017EB95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 696EE2092292E7890017EB95 /* LaunchScreen.storyboard */; };
 		696EE20E2292E7890017EB95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EE20D2292E7890017EB95 /* main.m */; };
-		696EE2192292EAC50017EB95 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EE2182292EAC50017EB95 /* RootViewController.m */; };
 		696EE2232292EAEE0017EB95 /* XHFloatWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EE21B2292EAEE0017EB95 /* XHFloatWindowController.m */; };
 		696EE2242292EAEE0017EB95 /* XHFloatWindowSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EE21C2292EAEE0017EB95 /* XHFloatWindowSingleton.m */; };
 		696EE2252292EAEE0017EB95 /* XHFloatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EE2212292EAEE0017EB95 /* XHFloatWindow.m */; };
 		696EE2262292EAEE0017EB95 /* XHDraggableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EE2222292EAEE0017EB95 /* XHDraggableButton.m */; };
+		696EE22C22991BCC0017EB95 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EE22B22991BCC0017EB95 /* RootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +31,6 @@
 		696EE20A2292E7890017EB95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		696EE20C2292E7890017EB95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		696EE20D2292E7890017EB95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		696EE2172292EAC50017EB95 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = ../../Git/XHFloatWindow/XHFloatingWindow/RootViewController.h; sourceTree = "<group>"; };
-		696EE2182292EAC50017EB95 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ../../Git/XHFloatWindow/XHFloatingWindow/RootViewController.m; sourceTree = "<group>"; };
 		696EE21B2292EAEE0017EB95 /* XHFloatWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHFloatWindowController.m; sourceTree = "<group>"; };
 		696EE21C2292EAEE0017EB95 /* XHFloatWindowSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHFloatWindowSingleton.m; sourceTree = "<group>"; };
 		696EE21D2292EAEE0017EB95 /* XHDraggableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDraggableButton.h; sourceTree = "<group>"; };
@@ -41,6 +39,8 @@
 		696EE2202292EAEE0017EB95 /* XHFloatWindowSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHFloatWindowSingleton.h; sourceTree = "<group>"; };
 		696EE2212292EAEE0017EB95 /* XHFloatWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHFloatWindow.m; sourceTree = "<group>"; };
 		696EE2222292EAEE0017EB95 /* XHDraggableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDraggableButton.m; sourceTree = "<group>"; };
+		696EE22A22991BCB0017EB95 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		696EE22B22991BCC0017EB95 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				696EE21A2292EAEE0017EB95 /* FloatingWindowPlugin */,
-				696EE2172292EAC50017EB95 /* RootViewController.h */,
-				696EE2182292EAC50017EB95 /* RootViewController.m */,
+				696EE22A22991BCB0017EB95 /* RootViewController.h */,
+				696EE22B22991BCC0017EB95 /* RootViewController.m */,
 				696EE1FE2292E7870017EB95 /* AppDelegate.h */,
 				696EE1FF2292E7870017EB95 /* AppDelegate.m */,
 				696EE2012292E7870017EB95 /* ViewController.h */,
@@ -179,9 +179,9 @@
 				696EE2032292E7870017EB95 /* ViewController.m in Sources */,
 				696EE20E2292E7890017EB95 /* main.m in Sources */,
 				696EE2002292E7870017EB95 /* AppDelegate.m in Sources */,
+				696EE22C22991BCC0017EB95 /* RootViewController.m in Sources */,
 				696EE2262292EAEE0017EB95 /* XHDraggableButton.m in Sources */,
 				696EE2242292EAEE0017EB95 /* XHFloatWindowSingleton.m in Sources */,
-				696EE2192292EAC50017EB95 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
